@@ -16,10 +16,24 @@ const Animes = () => {
         setIsOpen(true);
     }
 
+    const onClose = e => {
+        setIsOpen(false);
+    }
+
     return (
         <div>
             <ul>
                 {data.map(anime => <li key={anime.id}>
+
+                    <Model isOpen={isOpen} onRequestClose={onClose}>
+                        <h1>
+                            {anime.title}
+                        </h1>
+                        <p>
+                            {anime.genre}
+                        </p>
+                    </Model>
+
                     <Link href={`/animes`} as={`/animes/${anime.id}`}>
                         <a onClick={onOpen}>
                             {anime.title}
@@ -27,9 +41,6 @@ const Animes = () => {
                     </Link>
                 </li>)}
             </ul>
-            <Model isOpen={isOpen}>
-                <div>Modal is here</div>
-            </Model>
         </div>
     )
 }
